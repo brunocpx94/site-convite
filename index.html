@@ -72,14 +72,16 @@
             </div>
 
             <label for="crianca">Criança:</label>
-            <select id="crianca" name="crianca" onchange="toggleIdadeCampo(this)">
+            <select id="crianca" name="crianca" onchange="toggleCriancaCampo(this)">
                 <option value="Não">Não</option>
                 <option value="Sim">Sim</option>
             </select>
 
-            <div id="idadeDiv" style="display: none;">
-                <label for="idade_crianca">Idade da Criança:</label>
-                <input type="number" id="idade_crianca" name="idade_crianca" min="0" placeholder="Idade em anos">
+            <div id="criancaDiv" style="display: none;">
+                <div id="criancasContainer">
+                    <!-- Campos para crianças serão adicionados aqui -->
+                </div>
+                <button type="button" onclick="adicionarCrianca()">Adicionar Criança</button>
             </div>
 
             <button type="submit">Enviar</button>
@@ -87,15 +89,6 @@
     </div>
 
     <script>
-        function toggleIdadeCampo(select) {
-            var idadeDiv = document.getElementById("idadeDiv");
-            if (select.value === "Sim") {
-                idadeDiv.style.display = "block";
-            } else {
-                idadeDiv.style.display = "none";
-            }
-        }
-
         function toggleAcompanhanteCampo(select) {
             var acompanhanteDiv = document.getElementById("acompanhanteDiv");
             if (select.value === "Sim") {
@@ -105,6 +98,49 @@
             }
         }
 
+        function toggleCriancaCampo(select) {
+            var criancaDiv = document.getElementById("criancaDiv");
+            if (select.value === "Sim") {
+                criancaDiv.style.display = "block";
+            } else {
+                criancaDiv.style.display = "none";
+                document.getElementById("criancasContainer").innerHTML = ""; // Remove todas as crianças
+            }
+        }
+
+        function adicionarCrianca() {
+            const criancasContainer = document.getElementById("criancasContainer");
+
+            const criancaDiv = document.createElement("div");
+            criancaDiv.style.marginBottom = "10px";
+
+            const nomeLabel = document.createElement("label");
+            nomeLabel.textContent = "Nome da Criança:";
+            criancaDiv.appendChild(nomeLabel);
+
+            const nomeInput = document.createElement("input");
+            nomeInput.type = "text";
+            nomeInput.name = "nome_crianca[]";
+            nomeInput.placeholder = "Nome da criança";
+            nomeInput.required = true;
+            criancaDiv.appendChild(nomeInput);
+
+            const idadeLabel = document.createElement("label");
+            idadeLabel.textContent = "Idade da Criança:";
+            idadeLabel.style.marginTop = "5px";
+            criancaDiv.appendChild(idadeLabel);
+
+            const idadeInput = document.createElement("input");
+            idadeInput.type = "number";
+            idadeInput.name = "idade_crianca[]";
+            idadeInput.min = "0";
+            idadeInput.placeholder = "Idade em anos";
+            idadeInput.required = true;
+            criancaDiv.appendChild(idadeInput);
+
+            criancasContainer.appendChild(criancaDiv);
+        }
+
         document.getElementById("confirmationForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Evita o envio do formulário
 
@@ -112,14 +148,24 @@
             const acompanhante = document.getElementById("acompanhante").value;
             const nomeAcompanhante = document.getElementById("nome_acompanhante").value;
             const crianca = document.getElementById("crianca").value;
-            const idadeCrianca = document.getElementById("idade_crianca").value;
+
+            const criancas = [];
+            const nomeCriancas = document.getElementsByName("nome_crianca[]");
+            const idadeCriancas = document.getElementsByName("idade_crianca[]");
+
+            for (let i = 0; i < nomeCriancas.length; i++) {
+                criancas.push({
+                    Nome: nomeCriancas[i].value,
+                    Idade: idadeCriancas[i].value
+                });
+            }
 
             const dados = {
                 Nome: nome,
                 Acompanhante: acompanhante,
                 "Nome do Acompanhante": acompanhante === "Sim" ? nomeAcompanhante : "N/A",
                 Crianca: crianca,
-                "Idade da Criança": crianca === "Sim" ? idadeCrianca : "N/A"
+                Criancas: criancas
             };
 
             alert("Dados enviados: \n" + JSON.stringify(dados, null, 2));
