@@ -9,23 +9,19 @@
             font-family: 'Comic Sans MS', cursive, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #d6f7ff;
-            background-image: url('https://www.melhoresdestinos.com.br/wp-content/uploads/2022/12/novidades-disney-2023-1-e1672413738267.webp'); /* Fundo temático */
-            background-size: 80%; /* Diminuir resolução */
-            background-repeat: no-repeat;
-            background-position: center;
+            background-color: #f0f8ff; /* Cor de fundo mais clean */
         }
         .container {
             max-width: 500px;
-            margin: 200px auto; /* Centraliza verticalmente */
-            background: rgba(255, 255, 255, 0.9);
+            margin: 150px auto; /* Centraliza verticalmente */
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         h1 {
             text-align: center;
-            color: #ff6363;
+            color: #4169e1;
             font-size: 28px;
             margin-bottom: 20px;
         }
@@ -46,45 +42,20 @@
             border-radius: 5px;
         }
         button {
-            background-color: #ff9f43;
+            background-color: #4682b4;
             color: white;
             border: none;
             cursor: pointer;
             font-weight: bold;
         }
         button:hover {
-            background-color: #ff7849;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .header img {
-            width: 150px;
-            margin-bottom: 10px;
-        }
-        .balloons {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
-        }
-        .balloons img {
-            width: 300px;
-            opacity: 0.7;
+            background-color: #5a9bd4;
         }
     </style>
 </head>
 <body>
-    <div class="balloons">
-        <img src="https://www.melhoresdestinos.com.br/wp-content/uploads/2022/12/novidades-disney-2023-1-e1672413738267.webp" alt="Baloes"> <!-- Balões animados -->
-    </div>
     <div class="container">
-        <div class="header">
-            <img src="https://www.melhoresdestinos.com.br/wp-content/uploads/2022/12/novidades-disney-2023-1-e1672413738267.webp" alt="Disney Logo"> <!-- Disney -->
-            <h1>Aniversário 1 Ano <br>Davi Fonseca Xavier</h1>
-        </div>
+        <h1>Aniversário 1 Ano <br>Davi Fonseca Xavier</h1>
         <form id="confirmationForm">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
