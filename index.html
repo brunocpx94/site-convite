@@ -61,10 +61,15 @@
             <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
 
             <label for="acompanhante">Acompanhante:</label>
-            <select id="acompanhante" name="acompanhante">
-                <option value="Sim">Sim</option>
+            <select id="acompanhante" name="acompanhante" onchange="toggleAcompanhanteCampo(this)">
                 <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
             </select>
+
+            <div id="acompanhanteDiv" style="display: none;">
+                <label for="nome_acompanhante">Nome do Acompanhante:</label>
+                <input type="text" id="nome_acompanhante" name="nome_acompanhante" placeholder="Nome do acompanhante">
+            </div>
 
             <label for="crianca">Criança:</label>
             <select id="crianca" name="crianca" onchange="toggleIdadeCampo(this)">
@@ -91,17 +96,28 @@
             }
         }
 
+        function toggleAcompanhanteCampo(select) {
+            var acompanhanteDiv = document.getElementById("acompanhanteDiv");
+            if (select.value === "Sim") {
+                acompanhanteDiv.style.display = "block";
+            } else {
+                acompanhanteDiv.style.display = "none";
+            }
+        }
+
         document.getElementById("confirmationForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Evita o envio do formulário
 
             const nome = document.getElementById("nome").value;
             const acompanhante = document.getElementById("acompanhante").value;
+            const nomeAcompanhante = document.getElementById("nome_acompanhante").value;
             const crianca = document.getElementById("crianca").value;
             const idadeCrianca = document.getElementById("idade_crianca").value;
 
             const dados = {
                 Nome: nome,
                 Acompanhante: acompanhante,
+                "Nome do Acompanhante": acompanhante === "Sim" ? nomeAcompanhante : "N/A",
                 Crianca: crianca,
                 "Idade da Criança": crianca === "Sim" ? idadeCrianca : "N/A"
             };
