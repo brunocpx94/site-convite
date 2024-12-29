@@ -113,6 +113,7 @@
 
             const criancaDiv = document.createElement("div");
             criancaDiv.style.marginBottom = "10px";
+            criancaDiv.className = "crianca-item";
 
             const nomeLabel = document.createElement("label");
             nomeLabel.textContent = "Nome da Criança:";
@@ -137,6 +138,15 @@
             idadeInput.placeholder = "Idade em anos";
             idadeInput.required = true;
             criancaDiv.appendChild(idadeInput);
+
+            const removerButton = document.createElement("button");
+            removerButton.type = "button";
+            removerButton.textContent = "Remover";
+            removerButton.style.marginLeft = "10px";
+            removerButton.onclick = function () {
+                criancasContainer.removeChild(criancaDiv);
+            };
+            criancaDiv.appendChild(removerButton);
 
             criancasContainer.appendChild(criancaDiv);
         }
