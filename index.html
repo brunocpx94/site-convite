@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aniversário 1 Ano Davi Fonseca Xavier</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
       body {
-        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-family: "Roboto", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f0f8ff; /* Cor de fundo mais clean */
+        background-color: #f0f8ff;
       }
       .container {
         max-width: 500px;
-        margin: 150px auto; /* Centraliza verticalmente */
+        margin: 150px auto;
         background: rgba(255, 255, 255, 0.95);
         padding: 20px;
         border-radius: 15px;
@@ -42,6 +44,7 @@
         font-size: 16px;
         border: 2px solid #ccc;
         border-radius: 5px;
+        font-family: "Roboto", sans-serif;
       }
       button {
         background-color: #4682b4;
@@ -207,16 +210,18 @@
             );
 
             if (response.ok) {
-              const result = await response.text();
-              alert(result); 
+              alert("OBRIGADO POR PREENCHER O FORMULÁRIO!");
+              location.reload();
             } else {
-              alert("Dados enviados com sucesso!");
+              alert("OBRIGADO POR PREENCHER O FORMULÁRIO!");
+              location.reload();
             }
+
           } catch (error) {
             console.error("Erro:", error);
-            alert("Dados enviados com sucesso!");
+            alert("OBRIGADO POR PREENCHER O FORMULÁRIO!");
+            location.reload();
           }
         });
     </script>
   </body>
-</html>
